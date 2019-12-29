@@ -1,0 +1,21 @@
+#Sieve of Eratosthenes is a simple algorithm for finding all the prime numbers smaller than a given value.
+
+n = int(input())
+list = [i for i in range(2,n+1)]
+k = 0
+i = 0
+j = 0
+l_len = len(list)
+while k!= list[-1]:
+    k = list[i]
+    j = 0
+    while j < l_len:
+        if (list[j] % k ==0) and (list[j] != k):
+            del list[j]
+            j+= 1
+        else:
+            j+=1
+        l_len = len(list)
+    i += 1
+   
+print(list)
