@@ -1,0 +1,29 @@
+#Дан текст на языке племени Мумба-Юмба. Выведите все слова, встречающиеся в тексте, разделяя их пробелом. Слова должны быть отсортированы по убыванию их количества появления в тексте, а при одинаковой частоте появления — в алфавитном порядке.
+
+f = open('mumba_umba_input.txt', 'r')
+inf = [i for i in f.read().split()]
+f.close()
+words = {}
+for i in inf:
+    if i not in words:
+        words[i] = 1
+    else:
+        words[i] = words[i] + 1
+counter = {}
+
+for key, value in words.items():
+    if value not in counter:
+        counter[value] = [key]
+    else:
+        counter[value].append(key)
+for i in range(1,7):
+    counter[i] = sorted(counter[i])
+wordsPairs = []
+for i in range(len(counter), 0,-1):
+    wordsPairs.append(counter[i])
+result = ''
+
+with open('output.txt', 'w') as inf:
+    for i in range(len(wordsPairs)):
+        for j in range(len(wordsPairs[i])):
+            inf.write(str(wordsPairs[i][j]) + ' ')
