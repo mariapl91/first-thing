@@ -1,0 +1,27 @@
+print('Введите четыре делителя')
+m = [int(i) for i in input().split()]
+print('Введите соответствующие остатки от деления')
+r = [int(i) for i in input().split()]
+
+def search(p, k, ost):
+    n = p
+    j = 1
+    while (n % k)!= ost:
+        j+= 1
+        n = j*p
+    return n
+
+terms = []
+compos = 1
+
+for i in range(len(m)):
+    compos *= m[i]
+
+for i in range(len(m)):
+    terms.append(compos // m[i])
+
+for i in range(len(terms)):
+    terms[i] = search(terms[i], m[i], r[i])
+
+number = (sum(terms)) % compos
+print(number)
